@@ -1,0 +1,203 @@
+---
+title: "Exploring US Inflation"
+description: |
+  US Inflation, as measured by Bureau of Labor Statistics (BLS)
+author:
+  - name: TidySigma
+    url: {}
+date: 2022-04-20
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+**This is inspired by a Jonathan Regenstein twitter post from Dec 6th, 2021.**   
+
+I want to update the analysis with latest data + make some modifications to his original charts.  
+- Jonathan's twitter post: https://twitter.com/jkregenstein/status/1467962068863275011?s=20  
+- Jonathan's original github code: https://gist.github.com/jkr216/0c6463e99dc54f323ed4976392ce3c57  
+
+*Load libraries and my custom function*
+```{r}
+library(tidyverse)
+suppressPackageStartupMessages(library(tidyquant))
+library(timetk)
+library(scales)
+library(plotly)
+library(ggrepel)
+
+# Change vs 12 months ago
+YY <- function(x){
+  (x - lag(x,12))/lag(x,12)
+}
+
+```
+
+*Section 1: get & prepare data*  
+
+Let's use the {tidyquant} package to access the BLS data in a tidy format. 
+For starters, lets make sure that the data from {tidyquant} is the same as the official BLS press release.
+
+The latest BLS press releases: https://www.bls.gov/news.release/cpi.nr0.htm  
+Most commonly quoted figure from that press release appears to the 8.5% year-over-year increase in "All Items"
+
+```{r}
+
+# Section 1.1: CPI Consumer Price Index for All Urban Consumers: All Items in U.S. City Average
+CPIAUCSL_YY12M_SA <- tq_get("CPIAUCSL", get= "economic.data", from = "2018-01-01")  %>%
+  summarise_by_time(
+    .date_var = date,
+    .by = "month",
+    CPI_allitems_monthly = mean(price, na.rm = T)) %>%
+  mutate(CPI_YY_12M_SA = YY(CPI_allitems_monthly)*100) %>%
+  rename(`Reported Inflation` = CPI_YY_12M_SA) %>%
+  na.omit()
+tail(CPIAUCSL_YY12M_SA)
+
+```
+
+Hmm, Looks like there is a **very small** difference between these numbers and the Mar'22 release from BLS. The script above returns 8.56% (rounding to 8.6%), whereas the BLS reported 8.5%  
+
+A closer read of their press release reveals that they are using the **not seasonally adjusted** figures for their 12 Month Change calculations. Let's modify the above code - replace the FRED ID from "CPIAUCSL" to "CPIAUCNS"
+
+```{r}
+# Section 1.2: CPI Consumer Price Index for All Urban Consumers: All Items in U.S. City Average
+# Not Seasonally Adjusted
+CPIAUCSL_YY12M_NSA <- tq_get("CPIAUCNS", get= "economic.data", from = "2018-01-01")  %>%
+  summarise_by_time(
+    .date_var = date,
+    .by = "month",
+    CPI_allitems_monthly = mean(price, na.rm = T)) %>%
+  mutate(CPI_YY_12M_NSA = YY(CPI_allitems_monthly)*100) %>%
+  rename(`Reported Inflation` = CPI_YY_12M_NSA) %>%
+  na.omit()
+tail(CPIAUCSL_YY12M_NSA)
+```
+
+The latest data point (8.5% for March 2022) in my data frame, matches the BLS press release. Now, on to the rest of the exploration.
+
+*Section 2.1: Visualize Reported Inflation*  
+First chart, a look at inflation from Jan 2019 to March 2022.  
+
+```{r}
+CPIAUCSL_chart <- CPIAUCSL_YY12M_NSA %>%
+  ggplot(aes(x=date, y=`Reported Inflation`)) +
+  geom_line() +
+  geom_point() +
+  geom_hline(yintercept = 0) +
+  scale_y_continuous(labels = scales::number_format(accuracy = 0.1),
+                     breaks = pretty_breaks(10)) +
+  scale_x_date(date_breaks = "1 month",
+               date_labels = "%Y-%m") +
+  labs(title = "Reported Inflation",
+       y     = "Inflation (%)", x = "Month") +
+  theme(axis.text.x=element_text(angle=45, hjust=1))
+```
+  
+*Interactive chart via {plotly}*  
+
+```{r} 
+CPIAUCSL_plotly <- ggplotly(CPIAUCSL_chart) %>%
+  layout(title = list(text = paste0('Reported Inflation',
+                                    '<br>',
+                                    '<sup>',
+                                    'Source: BLS, Viz by @TidySigma',
+                                    '</sup>')))
+CPIAUCSL_plotly
+```
+
+**Notable trends**      
+* Inflation breaks past 3% around April 2021  
+* Briefly plateau around 5.5% between June-September 2021  
+* Sharp upward trajectory from Oct 2021 to present  
+* Latest print of 8.5% is a 40 year high  
+
+All of these recent trends are causing alarm among inflation watchers.
+
+*Section 2.2: Visualize Expected Future Inflation*  
+
+Many inflation observers are keeping a close eye on not just today's inflation, but expected future inflation. A good measure is the "5-Year Breakeven Inflation Rate". Definition from the Federal Reserve:  "The breakeven inflation rate represents a measure of expected inflation derived from 5-Year Treasury Constant Maturity Securities (BC_5YEAR) and 5-Year Treasury Inflation-Indexed Constant Maturity Securities (TC_5YEAR). The latest value implies what market participants expect inflation to be in the next 5 years, on average." Lets use the FRED ID "T5YIE" to access this from {tidyquant}. 
+
+```{r}
+T5YIE_monthly <- tq_get("T5YIE", get= "economic.data", from = "2018-01-01") %>%
+  mutate(Percent = price/100) %>%
+  summarise_by_time(
+    .date_var = date,
+    .by = "month",
+    expected_five_year = mean(Percent, na.rm = T)*100) %>%
+  rename(`Expected Inflation` = expected_five_year)
+
+T5YIE_chart <- T5YIE_monthly %>%
+  ggplot(aes(x=date, y=`Expected Inflation`)) +
+  geom_line() +
+  geom_point() +
+  geom_hline(yintercept = 0) +
+  scale_y_continuous(labels = scales::number_format(accuracy = 0.1),
+                     breaks = pretty_breaks(10)) +
+  scale_x_date(date_breaks = "1 month",
+               date_labels = "%Y-%m") +
+    labs(title = "Expected Inflation",
+       y     = "Inflation (%)", x = "Month") +
+  theme(axis.text.x=element_text(angle=90, hjust=1))
+
+T5YIE_plotly <- ggplotly(T5YIE_chart) %>% 
+  layout(title = list(text = paste0('Expected Inflation',
+                                    '<br>',
+                                    '<sup>',
+                                    'Source: Fed Reserve, Viz by @TidySigma',
+                                    '</sup>')))
+T5YIE_plotly
+```
+Similar to reported inflation, **today's expectation for inflation 5 years from now** is on a similar upward trajectory.
+
+**To read the above chart:**  
+* As of March 2022, the market expected March 2027 inflation to be around 3.4%  
+* Good news: market expects inflation to come down from today 8.5% down to about 3.4% 5 years from now  
+* Bad news: inflation is expected to be elevated (i.e. beyond the "normal" ~2% level)  
+
+
+*Section 2.3: combine reported inflation data with expected inflation*
+
+Looking at these two trends side-by-side gives us an interesting view of what is going on.  
+In addition to plotting these two trends, I like Jonathan's idea of subtracting expected minus actual to get to an "Unexpected Inflation" figure.
+
+```{r}
+df <- left_join(T5YIE_monthly, CPIAUCSL_YY12M_NSA, by="date") %>%
+  select(date, `Expected Inflation`, `Reported Inflation`) %>%
+  mutate(`Unexpected Inflation` =  `Reported Inflation` - `Expected Inflation`) %>%
+  filter(date > "2019-03-01") %>%
+  mutate(across(`Expected Inflation`:`Unexpected Inflation`, ~round(.x,3)))
+
+chart_plotly <- df %>%
+  plot_ly(x=~date, y=~`Reported Inflation`, type='scatter', mode='lines+markers', name = "Reported") %>%
+  add_trace(x=~date, y=~`Expected Inflation`, type='scatter', mode='lines+markers', name = "Expected") %>%
+  add_trace(x=~date, y=~`Unexpected Inflation`, type = 'bar', name = "Unexpected",
+            opacity=0.25) %>%
+  layout(title = list(text = paste0('Inflation: Reported, Expected & Unexpected',
+                                    '<br>',
+                                    '<sup>',
+                                    'Sources: BLS, Federal Reserve, Viz by @TidySigma',
+                                    '</sup>') ), 
+         plot_bgcolor = "#e5ecf6",
+         yaxis = list(title = 'Inflation Percent (%)', ticksuffix = "%"),
+         xaxis = list(title = 'Month', type = 'date',
+                      tickformat = "%Y-%m", tickangle=-90,
+                      range = list("2019-03-01", "2022-05-01"),
+                      showgrid = T, dtick="M1"))
+chart_plotly
+```
+
+**Summary of findings**  
+* As of a few months ago, a lot of market watchers were not sure sure if inflation was going to continue to go up, or if things were going to be transitory.  
+* Clearly inflation has picked up in recent months, and this is cause for concern.  
+* The gap between reported inflation and 5 year expectation of inflation (the green bars) remains large, so market participants expect inflation to eventually come down.  
+* It is important to keep an eye on expected inflation, hopefully this will go down to a less alarming level soon.  
+
+
+For any questions, comments, bug notifications, etc; please contact me via Twitter @TidySigma
+
+
+
+```{r}
+# end of post
+```

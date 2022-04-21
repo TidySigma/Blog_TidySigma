@@ -1,0 +1,10 @@
+---
+title: "About this blog"
+description: |
+  A Data Science Blog  
+  R, Python, SQL
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```

@@ -1,0 +1,22 @@
+---
+title: "First Post"
+description: |
+  Is this thing working?
+author:
+  - name: TidySigma
+    url: {}
+date: 2022-04-18
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+First Post Test
+
+Created using Distill <https://rstudio.github.io/distill>.
+
+

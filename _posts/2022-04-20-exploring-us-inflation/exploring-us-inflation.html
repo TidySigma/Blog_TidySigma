@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Exploring US Inflation</title>
+
+  <meta property="description" itemprop="description" content="US Inflation, as measured by Bureau of Labor Statistics (BLS)"/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2022-04-20"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-04-20"/>
+  <meta name="article:author" content="TidySigma"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Exploring US Inflation"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="US Inflation, as measured by Bureau of Labor Statistics (BLS)"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Exploring US Inflation"/>
+  <meta property="twitter:description" content="US Inflation, as measured by Bureau of Labor Statistics (BLS)"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Exploring US Inflation"]},{"type":"character","attributes":{},"value":["US Inflation, as measured by Bureau of Labor Statistics (BLS)\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["TidySigma"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2022-04-20"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["exploring-us-inflation_files/anchor-4.2.2/anchor.min.js","exploring-us-inflation_files/bowser-1.9.3/bowser.min.js","exploring-us-inflation_files/crosstalk-1.2.0/css/crosstalk.min.css","exploring-us-inflation_files/crosstalk-1.2.0/js/crosstalk.js","exploring-us-inflation_files/crosstalk-1.2.0/js/crosstalk.js.map","exploring-us-inflation_files/crosstalk-1.2.0/js/crosstalk.min.js","exploring-us-inflation_files/crosstalk-1.2.0/js/crosstalk.min.js.map","exploring-us-inflation_files/crosstalk-1.2.0/scss/crosstalk.scss","exploring-us-inflation_files/distill-2.2.21/template.v2.js","exploring-us-inflation_files/figure-html5/unnamed-chunk-4-1.png","exploring-us-inflation_files/header-attrs-2.11/header-attrs.js","exploring-us-inflation_files/htmlwidgets-1.5.4/htmlwidgets.js","exploring-us-inflation_files/jquery-3.6.0/jquery-3.6.0.js","exploring-us-inflation_files/jquery-3.6.0/jquery-3.6.0.min.js","exploring-us-inflation_files/jquery-3.6.0/jquery-3.6.0.min.map","exploring-us-inflation_files/plotly-binding-4.10.0/plotly.js","exploring-us-inflation_files/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css","exploring-us-inflation_files/plotly-main-2.5.1/plotly-latest.min.js","exploring-us-inflation_files/popper-2.6.0/popper.min.js","exploring-us-inflation_files/tippy-6.2.7/tippy-bundle.umd.min.js","exploring-us-inflation_files/tippy-6.2.7/tippy-light-border.css","exploring-us-inflation_files/tippy-6.2.7/tippy.css","exploring-us-inflation_files/tippy-6.2.7/tippy.umd.min.js","exploring-us-inflation_files/typedarray-0.1/typedarray.min.js","exploring-us-inflation_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="exploring-us-inflation_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="exploring-us-inflation_files/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+  <script src="exploring-us-inflation_files/plotly-binding-4.10.0/plotly.js"></script>
+  <script src="exploring-us-inflation_files/typedarray-0.1/typedarray.min.js"></script>
+  <script src="exploring-us-inflation_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="exploring-us-inflation_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+  <script src="exploring-us-inflation_files/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+  <link href="exploring-us-inflation_files/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+  <script src="exploring-us-inflation_files/plotly-main-2.5.1/plotly-latest.min.js"></script>
+  <script src="exploring-us-inflation_files/popper-2.6.0/popper.min.js"></script>
+  <link href="exploring-us-inflation_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="exploring-us-inflation_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="exploring-us-inflation_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="exploring-us-inflation_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="exploring-us-inflation_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="exploring-us-inflation_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="exploring-us-inflation_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Exploring US Inflation","description":"US Inflation, as measured by Bureau of Labor Statistics (BLS)","authors":[{"author":"TidySigma","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-04-20T00:00:00.000-05:00","citationText":"TidySigma, 2022"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Exploring US Inflation</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>US Inflation, as measured by Bureau of Labor Statistics (BLS)</p></p>
+</div>
+
+<div class="d-byline">
+  TidySigma true 
+  
+<br/>2022-04-20
+</div>
+
+<div class="d-article">
+<p><strong>This is inspired by a Jonathan Regenstein twitter post from Dec 6th, 2021.</strong></p>
+<p>I want to update the analysis with latest data + make some modifications to his original charts.<br />
+- Jonathan’s twitter post: <a href="https://twitter.com/jkregenstein/status/1467962068863275011?s=20" class="uri">https://twitter.com/jkregenstein/status/1467962068863275011?s=20</a><br />
+- Jonathan’s original github code: <a href="https://gist.github.com/jkr216/0c6463e99dc54f323ed4976392ce3c57" class="uri">https://gist.github.com/jkr216/0c6463e99dc54f323ed4976392ce3c57</a></p>
+<em>Load libraries and my custom function</em>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/business-science/tidyquant'>tidyquant</a></span><span class='op'>)</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/business-science/timetk'>timetk</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://scales.r-lib.org'>scales</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://plotly-r.com'>plotly</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/slowkow/ggrepel'>ggrepel</a></span><span class='op'>)</span>
+
+<span class='co'># Change vs 12 months ago</span>
+<span class='va'>YY</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='op'>(</span><span class='va'>x</span> <span class='op'>-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lag</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='fl'>12</span><span class='op'>)</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lag</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='fl'>12</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p><em>Section 1: get &amp; prepare data</em></p>
+<p>Let’s use the {tidyquant} package to access the BLS data in a tidy format. For starters, lets make sure that the data from {tidyquant} is the same as the official BLS press release.</p>
+<p>The latest BLS press releases: <a href="https://www.bls.gov/news.release/cpi.nr0.htm" class="uri">https://www.bls.gov/news.release/cpi.nr0.htm</a><br />
+Most commonly quoted figure from that press release appears to the 8.5% year-over-year increase in “All Items”</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Section 1.1: CPI Consumer Price Index for All Urban Consumers: All Items in U.S. City Average</span>
+<span class='va'>CPIAUCSL_YY12M_SA</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyquant/man/tq_get.html'>tq_get</a></span><span class='op'>(</span><span class='st'>"CPIAUCSL"</span>, get<span class='op'>=</span> <span class='st'>"economic.data"</span>, from <span class='op'>=</span> <span class='st'>"2018-01-01"</span><span class='op'>)</span>  <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/timetk/man/summarise_by_time.html'>summarise_by_time</a></span><span class='op'>(</span>
+    .date_var <span class='op'>=</span> <span class='va'>date</span>,
+    .by <span class='op'>=</span> <span class='st'>"month"</span>,
+    CPI_allitems_monthly <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>price</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>CPI_YY_12M_SA <span class='op'>=</span> <span class='fu'>YY</span><span class='op'>(</span><span class='va'>CPI_allitems_monthly</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>`Reported Inflation` <span class='op'>=</span> <span class='va'>CPI_YY_12M_SA</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>CPIAUCSL_YY12M_SA</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 x 3
+  date       CPI_allitems_monthly `Reported Inflation`
+  &lt;date&gt;                    &lt;dbl&gt;                &lt;dbl&gt;
+1 2021-10-01                 277.                 6.24
+2 2021-11-01                 279.                 6.83
+3 2021-12-01                 280.                 7.10
+4 2022-01-01                 282.                 7.53
+5 2022-02-01                 284.                 7.91
+6 2022-03-01                 288.                 8.56</code></pre>
+</div>
+<p>Hmm, Looks like there is a <strong>very small</strong> difference between these numbers and the Mar’22 release from BLS. The script above returns 8.56% (rounding to 8.6%), whereas the BLS reported 8.5%</p>
+<p>A closer read of their press release reveals that they are using the <strong>not seasonally adjusted</strong> figures for their 12 Month Change calculations. Let’s modify the above code - replace the FRED ID from “CPIAUCSL” to “CPIAUCNS”</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Section 1.2: CPI Consumer Price Index for All Urban Consumers: All Items in U.S. City Average</span>
+<span class='co'># Not Seasonally Adjusted</span>
+<span class='va'>CPIAUCSL_YY12M_NSA</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyquant/man/tq_get.html'>tq_get</a></span><span class='op'>(</span><span class='st'>"CPIAUCNS"</span>, get<span class='op'>=</span> <span class='st'>"economic.data"</span>, from <span class='op'>=</span> <span class='st'>"2018-01-01"</span><span class='op'>)</span>  <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/timetk/man/summarise_by_time.html'>summarise_by_time</a></span><span class='op'>(</span>
+    .date_var <span class='op'>=</span> <span class='va'>date</span>,
+    .by <span class='op'>=</span> <span class='st'>"month"</span>,
+    CPI_allitems_monthly <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>price</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>CPI_YY_12M_NSA <span class='op'>=</span> <span class='fu'>YY</span><span class='op'>(</span><span class='va'>CPI_allitems_monthly</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>`Reported Inflation` <span class='op'>=</span> <span class='va'>CPI_YY_12M_NSA</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>CPIAUCSL_YY12M_NSA</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 x 3
+  date       CPI_allitems_monthly `Reported Inflation`
+  &lt;date&gt;                    &lt;dbl&gt;                &lt;dbl&gt;
+1 2021-10-01                 277.                 6.22
+2 2021-11-01                 278.                 6.81
+3 2021-12-01                 279.                 7.04
+4 2022-01-01                 281.                 7.48
+5 2022-02-01                 284.                 7.87
+6 2022-03-01                 288.                 8.54</code></pre>
+</div>
+<p>The latest data point (8.5% for March 2022) in my data frame, matches the BLS press release. Now, on to the rest of the exploration.</p>
+<p><em>Section 2.1: Visualize Reported Inflation</em><br />
+First chart, a look at inflation from Jan 2019 to March 2022.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>CPIAUCSL_chart</span> <span class='op'>&lt;-</span> <span class='va'>CPIAUCSL_YY12M_NSA</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>date</span>, y<span class='op'>=</span><span class='va'>`Reported Inflation`</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_hline</a></span><span class='op'>(</span>yintercept <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/label_number.html'>number_format</a></span><span class='op'>(</span>accuracy <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span>,
+                     breaks <span class='op'>=</span> <span class='fu'><a href='https://scales.r-lib.org/reference/breaks_pretty.html'>pretty_breaks</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_date.html'>scale_x_date</a></span><span class='op'>(</span>date_breaks <span class='op'>=</span> <span class='st'>"1 month"</span>,
+               date_labels <span class='op'>=</span> <span class='st'>"%Y-%m"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Reported Inflation"</span>,
+       y     <span class='op'>=</span> <span class='st'>"Inflation (%)"</span>, x <span class='op'>=</span> <span class='st'>"Month"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle<span class='op'>=</span><span class='fl'>45</span>, hjust<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p><em>Interactive chart via {plotly}</em></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>CPIAUCSL_plotly</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/ggplotly.html'>ggplotly</a></span><span class='op'>(</span><span class='va'>CPIAUCSL_chart</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/layout.html'>layout</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>'Reported Inflation'</span>,
+                                    <span class='st'>'&lt;br&gt;'</span>,
+                                    <span class='st'>'&lt;sup&gt;'</span>,
+                                    <span class='st'>'Source: BLS, Viz by @TidySigma'</span>,
+                                    <span class='st'>'&lt;/sup&gt;'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>CPIAUCSL_plotly</span>
+</code></pre>
+</div>
+<div id="htmlwidget-dbba36c5e6964198f495" style="width:624px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dbba36c5e6964198f495">{"x":{"data":[{"x":[17897,17928,17956,17987,18017,18048,18078,18109,18140,18170,18201,18231,18262,18293,18322,18353,18383,18414,18444,18475,18506,18536,18567,18597,18628,18659,18687,18718,18748,18779,18809,18840,18871,18901,18932,18962,18993,19024,19052],"y":[1.55123513819911,1.52013526593331,1.86252274056917,1.99643977553025,1.79022846876639,1.64848465607624,1.81146480639351,1.74977988942914,1.71130451316953,1.76404294442138,2.05127798189163,2.28512974012171,2.48657195525045,2.33487356394594,1.53932699191982,0.329096686336817,0.117926370210714,0.645733047555488,0.986081825303706,1.30964538233071,1.37132486105646,1.18206616772748,1.17453578426797,1.36200549471931,1.39976974156009,1.6762152173745,2.61976250895919,4.15969483870211,4.99270653759448,5.39145141332133,5.36547523938541,5.251271554875,5.39034885507916,6.22186890332889,6.80900283980648,7.03640286554513,7.47987246828911,7.87106389773928,8.54245555484244],"text":["date: 2019-01-01<br />Reported Inflation: 1.5512351","date: 2019-02-01<br />Reported Inflation: 1.5201353","date: 2019-03-01<br />Reported Inflation: 1.8625227","date: 2019-04-01<br />Reported Inflation: 1.9964398","date: 2019-05-01<br />Reported Inflation: 1.7902285","date: 2019-06-01<br />Reported Inflation: 1.6484847","date: 2019-07-01<br />Reported Inflation: 1.8114648","date: 2019-08-01<br />Reported Inflation: 1.7497799","date: 2019-09-01<br />Reported Inflation: 1.7113045","date: 2019-10-01<br />Reported Inflation: 1.7640429","date: 2019-11-01<br />Reported Inflation: 2.0512780","date: 2019-12-01<br />Reported Inflation: 2.2851297","date: 2020-01-01<br />Reported Inflation: 2.4865720","date: 2020-02-01<br />Reported Inflation: 2.3348736","date: 2020-03-01<br />Reported Inflation: 1.5393270","date: 2020-04-01<br />Reported Inflation: 0.3290967","date: 2020-05-01<br />Reported Inflation: 0.1179264","date: 2020-06-01<br />Reported Inflation: 0.6457330","date: 2020-07-01<br />Reported Inflation: 0.9860818","date: 2020-08-01<br />Reported Inflation: 1.3096454","date: 2020-09-01<br />Reported Inflation: 1.3713249","date: 2020-10-01<br />Reported Inflation: 1.1820662","date: 2020-11-01<br />Reported Inflation: 1.1745358","date: 2020-12-01<br />Reported Inflation: 1.3620055","date: 2021-01-01<br />Reported Inflation: 1.3997697","date: 2021-02-01<br />Reported Inflation: 1.6762152","date: 2021-03-01<br />Reported Inflation: 2.6197625","date: 2021-04-01<br />Reported Inflation: 4.1596948","date: 2021-05-01<br />Reported Inflation: 4.9927065","date: 2021-06-01<br />Reported Inflation: 5.3914514","date: 2021-07-01<br />Reported Inflation: 5.3654752","date: 2021-08-01<br />Reported Inflation: 5.2512716","date: 2021-09-01<br />Reported Inflation: 5.3903489","date: 2021-10-01<br />Reported Inflation: 6.2218689","date: 2021-11-01<br />Reported Inflation: 6.8090028","date: 2021-12-01<br />Reported Inflation: 7.0364029","date: 2022-01-01<br />Reported Inflation: 7.4798725","date: 2022-02-01<br />Reported Inflation: 7.8710639","date: 2022-03-01<br />Reported Inflation: 8.5424556"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"frame":null},{"x":[17839.25,19109.75],"y":[0,0],"text":"yintercept: 0","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":45.4063926940639,"r":7.30593607305936,"b":52.4896543903472,"l":43.1050228310502},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Reported Inflation<br><sup>Source: BLS, Viz by @TidySigma<\/sup>","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[17839.25,19109.75],"tickmode":"array","ticktext":["2018-12","2019-01","2019-02","2019-03","2019-04","2019-05","2019-06","2019-07","2019-08","2019-09","2019-10","2019-11","2019-12","2020-01","2020-02","2020-03","2020-04","2020-05","2020-06","2020-07","2020-08","2020-09","2020-10","2020-11","2020-12","2021-01","2021-02","2021-03","2021-04","2021-05","2021-06","2021-07","2021-08","2021-09","2021-10","2021-11","2021-12","2022-01","2022-02","2022-03","2022-04"],"tickvals":[17866,17897,17928,17956,17987,18017,18048,18078,18109,18140,18170,18201,18231,18262,18293,18322,18353,18383,18414,18444,18475,18506,18536,18567,18597,18628,18659,18687,18718,18748,18779,18809,18840,18871,18901,18932,18962,18993,19024,19052,19083],"categoryorder":"array","categoryarray":["2018-12","2019-01","2019-02","2019-03","2019-04","2019-05","2019-06","2019-07","2019-08","2019-09","2019-10","2019-11","2019-12","2020-01","2020-02","2020-03","2020-04","2020-05","2020-06","2020-07","2020-08","2020-09","2020-10","2020-11","2020-12","2021-01","2021-02","2021-03","2021-04","2021-05","2021-06","2021-07","2021-08","2021-09","2021-10","2021-11","2021-12","2022-01","2022-02","2022-03","2022-04"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Month","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.427122777742122,8.96957833258456],"tickmode":"array","ticktext":["0.0","1.0","2.0","3.0","4.0","5.0","6.0","7.0","8.0"],"tickvals":[0,1,2,3,4,5,6,7,8],"categoryorder":"array","categoryarray":["0.0","1.0","2.0","3.0","4.0","5.0","6.0","7.0","8.0"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Inflation (%)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"34886133651":{"x":{},"y":{},"type":"scatter"},"34882fbb3b91":{"x":{},"y":{}},"348824d64c80":{"yintercept":{}}},"cur_data":"34886133651","visdat":{"34886133651":["function (y) ","x"],"34882fbb3b91":["function (y) ","x"],"348824d64c80":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<p><strong>Notable trends</strong><br />
+* Inflation breaks past 3% around April 2021<br />
+* Briefly plateau around 5.5% between June-September 2021<br />
+* Sharp upward trajectory from Oct 2021 to present<br />
+* Latest print of 8.5% is a 40 year high</p>
+<p>All of these recent trends are causing alarm among inflation watchers.</p>
+<p><em>Section 2.2: Visualize Expected Future Inflation</em></p>
+<p>Many inflation observers are keeping a close eye on not just today’s inflation, but expected future inflation. A good measure is the “5-Year Breakeven Inflation Rate”. Definition from the Federal Reserve: “The breakeven inflation rate represents a measure of expected inflation derived from 5-Year Treasury Constant Maturity Securities (BC_5YEAR) and 5-Year Treasury Inflation-Indexed Constant Maturity Securities (TC_5YEAR). The latest value implies what market participants expect inflation to be in the next 5 years, on average.” Lets use the FRED ID “T5YIE” to access this from {tidyquant}.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>T5YIE_monthly</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyquant/man/tq_get.html'>tq_get</a></span><span class='op'>(</span><span class='st'>"T5YIE"</span>, get<span class='op'>=</span> <span class='st'>"economic.data"</span>, from <span class='op'>=</span> <span class='st'>"2018-01-01"</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Percent <span class='op'>=</span> <span class='va'>price</span><span class='op'>/</span><span class='fl'>100</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/timetk/man/summarise_by_time.html'>summarise_by_time</a></span><span class='op'>(</span>
+    .date_var <span class='op'>=</span> <span class='va'>date</span>,
+    .by <span class='op'>=</span> <span class='st'>"month"</span>,
+    expected_five_year <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Percent</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>`Expected Inflation` <span class='op'>=</span> <span class='va'>expected_five_year</span><span class='op'>)</span>
+
+<span class='va'>T5YIE_chart</span> <span class='op'>&lt;-</span> <span class='va'>T5YIE_monthly</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>date</span>, y<span class='op'>=</span><span class='va'>`Expected Inflation`</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_hline</a></span><span class='op'>(</span>yintercept <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/label_number.html'>number_format</a></span><span class='op'>(</span>accuracy <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span>,
+                     breaks <span class='op'>=</span> <span class='fu'><a href='https://scales.r-lib.org/reference/breaks_pretty.html'>pretty_breaks</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_date.html'>scale_x_date</a></span><span class='op'>(</span>date_breaks <span class='op'>=</span> <span class='st'>"1 month"</span>,
+               date_labels <span class='op'>=</span> <span class='st'>"%Y-%m"</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Expected Inflation"</span>,
+       y     <span class='op'>=</span> <span class='st'>"Inflation (%)"</span>, x <span class='op'>=</span> <span class='st'>"Month"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle<span class='op'>=</span><span class='fl'>90</span>, hjust<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>T5YIE_plotly</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/ggplotly.html'>ggplotly</a></span><span class='op'>(</span><span class='va'>T5YIE_chart</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/layout.html'>layout</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>'Expected Inflation'</span>,
+                                    <span class='st'>'&lt;br&gt;'</span>,
+                                    <span class='st'>'&lt;sup&gt;'</span>,
+                                    <span class='st'>'Source: Fed Reserve, Viz by @TidySigma'</span>,
+                                    <span class='st'>'&lt;/sup&gt;'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>T5YIE_plotly</span>
+</code></pre>
+</div>
+<div id="htmlwidget-1ea167e6a0a574a35184" style="width:624px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1ea167e6a0a574a35184">{"x":{"data":[{"x":[17532,17563,17591,17622,17652,17683,17713,17744,17775,17805,17836,17866,17897,17928,17956,17987,18017,18048,18078,18109,18140,18170,18201,18231,18262,18293,18322,18353,18383,18414,18444,18475,18506,18536,18567,18597,18628,18659,18687,18718,18748,18779,18809,18840,18871,18901,18932,18962,18993,19024,19052,19083],"y":[1.93666666666667,1.96526315789474,2.02142857142857,2.04952380952381,2.10181818181818,2.06761904761905,2.04238095238095,1.98260869565217,2.00842105263158,1.98727272727273,1.8445,1.60157894736842,1.62809523809524,1.75736842105263,1.81619047619048,1.83857142857143,1.70818181818182,1.549,1.57954545454545,1.38045454545455,1.3935,1.40227272727273,1.54842105263158,1.62142857142857,1.65238095238095,1.58105263157895,0.674545454545455,0.758571428571429,0.765,1.01409090909091,1.31318181818182,1.55047619047619,1.53238095238095,1.56095238095238,1.62526315789474,1.86545454545455,2.10315789473684,2.31157894736842,2.49695652173913,2.52954545454545,2.6495,2.46454545454545,2.49666666666667,2.49363636363636,2.49666666666667,2.745,2.9825,2.74909090909091,2.797,2.87052631578947,3.41086956521739,3.31384615384615],"text":["date: 2018-01-01<br />Expected Inflation: 1.9366667","date: 2018-02-01<br />Expected Inflation: 1.9652632","date: 2018-03-01<br />Expected Inflation: 2.0214286","date: 2018-04-01<br />Expected Inflation: 2.0495238","date: 2018-05-01<br />Expected Inflation: 2.1018182","date: 2018-06-01<br />Expected Inflation: 2.0676190","date: 2018-07-01<br />Expected Inflation: 2.0423810","date: 2018-08-01<br />Expected Inflation: 1.9826087","date: 2018-09-01<br />Expected Inflation: 2.0084211","date: 2018-10-01<br />Expected Inflation: 1.9872727","date: 2018-11-01<br />Expected Inflation: 1.8445000","date: 2018-12-01<br />Expected Inflation: 1.6015789","date: 2019-01-01<br />Expected Inflation: 1.6280952","date: 2019-02-01<br />Expected Inflation: 1.7573684","date: 2019-03-01<br />Expected Inflation: 1.8161905","date: 2019-04-01<br />Expected Inflation: 1.8385714","date: 2019-05-01<br />Expected Inflation: 1.7081818","date: 2019-06-01<br />Expected Inflation: 1.5490000","date: 2019-07-01<br />Expected Inflation: 1.5795455","date: 2019-08-01<br />Expected Inflation: 1.3804545","date: 2019-09-01<br />Expected Inflation: 1.3935000","date: 2019-10-01<br />Expected Inflation: 1.4022727","date: 2019-11-01<br />Expected Inflation: 1.5484211","date: 2019-12-01<br />Expected Inflation: 1.6214286","date: 2020-01-01<br />Expected Inflation: 1.6523810","date: 2020-02-01<br />Expected Inflation: 1.5810526","date: 2020-03-01<br />Expected Inflation: 0.6745455","date: 2020-04-01<br />Expected Inflation: 0.7585714","date: 2020-05-01<br />Expected Inflation: 0.7650000","date: 2020-06-01<br />Expected Inflation: 1.0140909","date: 2020-07-01<br />Expected Inflation: 1.3131818","date: 2020-08-01<br />Expected Inflation: 1.5504762","date: 2020-09-01<br />Expected Inflation: 1.5323810","date: 2020-10-01<br />Expected Inflation: 1.5609524","date: 2020-11-01<br />Expected Inflation: 1.6252632","date: 2020-12-01<br />Expected Inflation: 1.8654545","date: 2021-01-01<br />Expected Inflation: 2.1031579","date: 2021-02-01<br />Expected Inflation: 2.3115789","date: 2021-03-01<br />Expected Inflation: 2.4969565","date: 2021-04-01<br />Expected Inflation: 2.5295455","date: 2021-05-01<br />Expected Inflation: 2.6495000","date: 2021-06-01<br />Expected Inflation: 2.4645455","date: 2021-07-01<br />Expected Inflation: 2.4966667","date: 2021-08-01<br />Expected Inflation: 2.4936364","date: 2021-09-01<br />Expected Inflation: 2.4966667","date: 2021-10-01<br />Expected Inflation: 2.7450000","date: 2021-11-01<br />Expected Inflation: 2.9825000","date: 2021-12-01<br />Expected Inflation: 2.7490909","date: 2022-01-01<br />Expected Inflation: 2.7970000","date: 2022-02-01<br />Expected Inflation: 2.8705263","date: 2022-03-01<br />Expected Inflation: 3.4108696","date: 2022-04-01<br />Expected Inflation: 3.3138462"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"frame":null},{"x":[17454.45,19160.55],"y":[0,0],"text":"yintercept: 0","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":45.4063926940639,"r":7.30593607305936,"b":71.0502283105023,"l":43.1050228310502},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Expected Inflation<br><sup>Source: Fed Reserve, Viz by @TidySigma<\/sup>","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[17454.45,19160.55],"tickmode":"array","ticktext":["2017-11","2017-12","2018-01","2018-02","2018-03","2018-04","2018-05","2018-06","2018-07","2018-08","2018-09","2018-10","2018-11","2018-12","2019-01","2019-02","2019-03","2019-04","2019-05","2019-06","2019-07","2019-08","2019-09","2019-10","2019-11","2019-12","2020-01","2020-02","2020-03","2020-04","2020-05","2020-06","2020-07","2020-08","2020-09","2020-10","2020-11","2020-12","2021-01","2021-02","2021-03","2021-04","2021-05","2021-06","2021-07","2021-08","2021-09","2021-10","2021-11","2021-12","2022-01","2022-02","2022-03","2022-04","2022-05","2022-06"],"tickvals":[17471,17501,17532,17563,17591,17622,17652,17683,17713,17744,17775,17805,17836,17866,17897,17928,17956,17987,18017,18048,18078,18109,18140,18170,18201,18231,18262,18293,18322,18353,18383,18414,18444,18475,18506,18536,18567,18597,18628,18659,18687,18718,18748,18779,18809,18840,18871,18901,18932,18962,18993,19024,19052,19083,19113,19144],"categoryorder":"array","categoryarray":["2017-11","2017-12","2018-01","2018-02","2018-03","2018-04","2018-05","2018-06","2018-07","2018-08","2018-09","2018-10","2018-11","2018-12","2019-01","2019-02","2019-03","2019-04","2019-05","2019-06","2019-07","2019-08","2019-09","2019-10","2019-11","2019-12","2020-01","2020-02","2020-03","2020-04","2020-05","2020-06","2020-07","2020-08","2020-09","2020-10","2020-11","2020-12","2021-01","2021-02","2021-03","2021-04","2021-05","2021-06","2021-07","2021-08","2021-09","2021-10","2021-11","2021-12","2022-01","2022-02","2022-03","2022-04","2022-05","2022-06"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-90,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Month","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.17054347826087,3.58141304347826],"tickmode":"array","ticktext":["0.0","0.5","1.0","1.5","2.0","2.5","3.0","3.5"],"tickvals":[0,0.5,1,1.5,2,2.5,3,3.5],"categoryorder":"array","categoryarray":["0.0","0.5","1.0","1.5","2.0","2.5","3.0","3.5"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Inflation (%)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"348837ab606e":{"x":{},"y":{},"type":"scatter"},"34884b962558":{"x":{},"y":{}},"3488589c6ebb":{"yintercept":{}}},"cur_data":"348837ab606e","visdat":{"348837ab606e":["function (y) ","x"],"34884b962558":["function (y) ","x"],"3488589c6ebb":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<p>Similar to reported inflation, <strong>today’s expectation for inflation 5 years from now</strong> is on a similar upward trajectory.</p>
+<p><strong>To read the above chart:</strong><br />
+* As of March 2022, the market expected March 2027 inflation to be around 3.4%<br />
+* Good news: market expects inflation to come down from today 8.5% down to about 3.4% 5 years from now<br />
+* Bad news: inflation is expected to be elevated (i.e. beyond the “normal” ~2% level)</p>
+<p><em>Section 2.3: combine reported inflation data with expected inflation</em></p>
+<p>Looking at these two trends side-by-side gives us an interesting view of what is going on.<br />
+In addition to plotting these two trends, I like Jonathan’s idea of subtracting expected minus actual to get to an “Unexpected Inflation” figure.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>T5YIE_monthly</span>, <span class='va'>CPIAUCSL_YY12M_NSA</span>, by<span class='op'>=</span><span class='st'>"date"</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>date</span>, <span class='va'>`Expected Inflation`</span>, <span class='va'>`Reported Inflation`</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>`Unexpected Inflation` <span class='op'>=</span>  <span class='va'>`Reported Inflation`</span> <span class='op'>-</span> <span class='va'>`Expected Inflation`</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>date</span> <span class='op'>&gt;</span> <span class='st'>"2019-03-01"</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/across.html'>across</a></span><span class='op'>(</span><span class='va'>`Expected Inflation`</span><span class='op'>:</span><span class='va'>`Unexpected Inflation`</span>, <span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>.x</span>,<span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>chart_plotly</span> <span class='op'>&lt;-</span> <span class='va'>df</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/plot_ly.html'>plot_ly</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='op'>~</span><span class='va'>date</span>, y<span class='op'>=</span><span class='op'>~</span><span class='va'>`Reported Inflation`</span>, type<span class='op'>=</span><span class='st'>'scatter'</span>, mode<span class='op'>=</span><span class='st'>'lines+markers'</span>, name <span class='op'>=</span> <span class='st'>"Reported"</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/add_trace.html'>add_trace</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='op'>~</span><span class='va'>date</span>, y<span class='op'>=</span><span class='op'>~</span><span class='va'>`Expected Inflation`</span>, type<span class='op'>=</span><span class='st'>'scatter'</span>, mode<span class='op'>=</span><span class='st'>'lines+markers'</span>, name <span class='op'>=</span> <span class='st'>"Expected"</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/add_trace.html'>add_trace</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='op'>~</span><span class='va'>date</span>, y<span class='op'>=</span><span class='op'>~</span><span class='va'>`Unexpected Inflation`</span>, type <span class='op'>=</span> <span class='st'>'bar'</span>, name <span class='op'>=</span> <span class='st'>"Unexpected"</span>,
+            opacity<span class='op'>=</span><span class='fl'>0.25</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/layout.html'>layout</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>'Inflation: Reported, Expected &amp; Unexpected'</span>,
+                                    <span class='st'>'&lt;br&gt;'</span>,
+                                    <span class='st'>'&lt;sup&gt;'</span>,
+                                    <span class='st'>'Sources: BLS, Federal Reserve, Viz by @TidySigma'</span>,
+                                    <span class='st'>'&lt;/sup&gt;'</span><span class='op'>)</span> <span class='op'>)</span>, 
+         plot_bgcolor <span class='op'>=</span> <span class='st'>"#e5ecf6"</span>,
+         yaxis <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>'Inflation Percent (%)'</span>, ticksuffix <span class='op'>=</span> <span class='st'>"%"</span><span class='op'>)</span>,
+         xaxis <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>'Month'</span>, type <span class='op'>=</span> <span class='st'>'date'</span>,
+                      tickformat <span class='op'>=</span> <span class='st'>"%Y-%m"</span>, tickangle<span class='op'>=</span><span class='op'>-</span><span class='fl'>90</span>,
+                      range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"2019-03-01"</span>, <span class='st'>"2022-05-01"</span><span class='op'>)</span>,
+                      showgrid <span class='op'>=</span> <span class='cn'>T</span>, dtick<span class='op'>=</span><span class='st'>"M1"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>chart_plotly</span>
+</code></pre>
+</div>
+<div id="htmlwidget-2edc1fe7eb7ece7d5cfc" style="width:624px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2edc1fe7eb7ece7d5cfc">{"x":{"visdat":{"3488547d2588":["function () ","plotlyVisDat"]},"cur_data":"3488547d2588","attrs":{"3488547d2588":{"x":{},"y":{},"mode":"lines+markers","name":"Reported","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"3488547d2588.1":{"x":{},"y":{},"mode":"lines+markers","name":"Expected","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true},"3488547d2588.2":{"x":{},"y":{},"mode":"lines+markers","name":"Unexpected","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","opacity":0.25,"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":{"text":"Inflation: Reported, Expected & Unexpected<br><sup>Sources: BLS, Federal Reserve, Viz by @TidySigma<\/sup>"},"plot_bgcolor":"#e5ecf6","yaxis":{"domain":[0,1],"automargin":true,"title":"Inflation Percent (%)","ticksuffix":"%"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Month","type":"date","tickformat":"%Y-%m","tickangle":-90,"range":["2019-03-01","2022-05-01"],"showgrid":true,"dtick":"M1"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2019-04-01","2019-05-01","2019-06-01","2019-07-01","2019-08-01","2019-09-01","2019-10-01","2019-11-01","2019-12-01","2020-01-01","2020-02-01","2020-03-01","2020-04-01","2020-05-01","2020-06-01","2020-07-01","2020-08-01","2020-09-01","2020-10-01","2020-11-01","2020-12-01","2021-01-01","2021-02-01","2021-03-01","2021-04-01","2021-05-01","2021-06-01","2021-07-01","2021-08-01","2021-09-01","2021-10-01","2021-11-01","2021-12-01","2022-01-01","2022-02-01","2022-03-01"],"y":[1.996,1.79,1.648,1.811,1.75,1.711,1.764,2.051,2.285,2.487,2.335,1.539,0.329,0.118,0.646,0.986,1.31,1.371,1.182,1.175,1.362,1.4,1.676,2.62,4.16,4.993,5.391,5.365,5.251,5.39,6.222,6.809,7.036,7.48,7.871,8.542],"mode":"lines+markers","name":"Reported","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2019-04-01","2019-05-01","2019-06-01","2019-07-01","2019-08-01","2019-09-01","2019-10-01","2019-11-01","2019-12-01","2020-01-01","2020-02-01","2020-03-01","2020-04-01","2020-05-01","2020-06-01","2020-07-01","2020-08-01","2020-09-01","2020-10-01","2020-11-01","2020-12-01","2021-01-01","2021-02-01","2021-03-01","2021-04-01","2021-05-01","2021-06-01","2021-07-01","2021-08-01","2021-09-01","2021-10-01","2021-11-01","2021-12-01","2022-01-01","2022-02-01","2022-03-01","2022-04-01"],"y":[1.839,1.708,1.549,1.58,1.38,1.394,1.402,1.548,1.621,1.652,1.581,0.675,0.759,0.765,1.014,1.313,1.55,1.532,1.561,1.625,1.865,2.103,2.312,2.497,2.53,2.65,2.465,2.497,2.494,2.497,2.745,2.982,2.749,2.797,2.871,3.411,3.314],"mode":"lines+markers","name":"Expected","type":"scatter","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2019-04-01","2019-05-01","2019-06-01","2019-07-01","2019-08-01","2019-09-01","2019-10-01","2019-11-01","2019-12-01","2020-01-01","2020-02-01","2020-03-01","2020-04-01","2020-05-01","2020-06-01","2020-07-01","2020-08-01","2020-09-01","2020-10-01","2020-11-01","2020-12-01","2021-01-01","2021-02-01","2021-03-01","2021-04-01","2021-05-01","2021-06-01","2021-07-01","2021-08-01","2021-09-01","2021-10-01","2021-11-01","2021-12-01","2022-01-01","2022-02-01","2022-03-01"],"y":[0.158,0.082,0.099,0.232,0.369,0.318,0.362,0.503,0.664,0.834,0.754,0.865,-0.429,-0.647,-0.368,-0.327,-0.241,-0.161,-0.379,-0.451,-0.503,-0.703,-0.635,0.123,1.63,2.343,2.927,2.869,2.758,2.894,3.477,3.827,4.287,4.683,5.001,5.132],"mode":"lines+markers","name":"Unexpected","type":"bar","opacity":0.25,"marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<p><strong>Summary of findings</strong><br />
+* As of a few months ago, a lot of market watchers were not sure sure if inflation was going to continue to go up, or if things were going to be transitory.<br />
+* Clearly inflation has picked up in recent months, and this is cause for concern.<br />
+* The gap between reported inflation and 5 year expectation of inflation (the green bars) remains large, so market participants expect inflation to eventually come down.<br />
+* It is important to keep an eye on expected inflation, hopefully this will go down to a less alarming level soon.</p>
+<p>For any questions, comments, bug notifications, etc; please contact me via Twitter <span class="citation" data-cites="TidySigma">@TidySigma</span></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># end of post</span>
+</code></pre>
+</div>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
