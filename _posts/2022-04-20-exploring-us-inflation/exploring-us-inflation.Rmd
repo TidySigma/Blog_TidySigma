@@ -136,10 +136,10 @@ T5YIE_chart <- T5YIE_monthly %>%
   scale_y_continuous(labels = scales::number_format(accuracy = 0.1),
                      breaks = pretty_breaks(10)) +
   scale_x_date(date_breaks = "1 month",
-               date_labels = "%Y-%m") +
+               date_labels = "%m-%y") +
     labs(title = "Expected Inflation",
        y     = "Inflation (%)", x = "Month") +
-  theme(axis.text.x=element_text(angle=90, hjust=1))
+  theme(axis.text.x=element_text(angle=90, hjust=1, size = 4))
 
 T5YIE_plotly <- ggplotly(T5YIE_chart) %>% 
   layout(title = list(text = paste0('Expected Inflation',
@@ -183,7 +183,7 @@ chart_plotly <- df %>%
          plot_bgcolor = "#e5ecf6",
          yaxis = list(title = 'Inflation Percent (%)', ticksuffix = "%"),
          xaxis = list(title = 'Month', type = 'date',
-                      tickformat = "%Y-%m", tickangle=-90,
+                      tickformat = "%m-%y", tickangle=-90, tickfont = list(size = 4),
                       range = list("2019-03-01", "2022-05-01"),
                       showgrid = T, dtick="M1")) %>%
   config(displayModeBar = FALSE)
