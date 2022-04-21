@@ -88,10 +88,10 @@ CPIAUCSL_chart <- CPIAUCSL_YY12M_NSA %>%
   scale_y_continuous(labels = scales::number_format(accuracy = 0.1),
                      breaks = pretty_breaks(10)) +
   scale_x_date(date_breaks = "1 month",
-               date_labels = "%y-%m") +
+               date_labels = "%m-%y") +
   labs(title = "Reported Inflation",
        y     = "Inflation (%)", x = "Month") +
-  theme(axis.text.x=element_text(angle=45, hjust=1))
+  theme(axis.text.x=element_text(angle=45, hjust=1, size = 8))
 ```
   
 *Interactive chart via {plotly}*  
