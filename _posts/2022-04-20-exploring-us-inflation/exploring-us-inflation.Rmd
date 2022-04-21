@@ -88,7 +88,7 @@ CPIAUCSL_chart <- CPIAUCSL_YY12M_NSA %>%
   scale_y_continuous(labels = scales::number_format(accuracy = 0.1),
                      breaks = pretty_breaks(10)) +
   scale_x_date(date_breaks = "1 month",
-               date_labels = "%Y-%m") +
+               date_labels = "%y-%m") +
   labs(title = "Reported Inflation",
        y     = "Inflation (%)", x = "Month") +
   theme(axis.text.x=element_text(angle=45, hjust=1))
@@ -102,7 +102,8 @@ CPIAUCSL_plotly <- ggplotly(CPIAUCSL_chart) %>%
                                     '<br>',
                                     '<sup>',
                                     'Source: BLS, Viz by @TidySigma',
-                                    '</sup>')))
+                                    '</sup>'))) %>%
+  config(displayModeBar = FALSE)
 CPIAUCSL_plotly
 ```
 
@@ -145,13 +146,14 @@ T5YIE_plotly <- ggplotly(T5YIE_chart) %>%
                                     '<br>',
                                     '<sup>',
                                     'Source: Fed Reserve, Viz by @TidySigma',
-                                    '</sup>')))
+                                    '</sup>'))) %>%
+  config(displayModeBar = FALSE)
 T5YIE_plotly
 ```
 Similar to reported inflation, **today's expectation for inflation 5 years from now** is on a similar upward trajectory.
 
 **To read the above chart:**  
-* As of March 2022, the market expected March 2027 inflation to be around 3.4%  
+* As of March 2022, the market expected **March 2027** inflation to be around 3.4%  
 * Good news: market expects inflation to come down from today 8.5% down to about 3.4% 5 years from now  
 * Bad news: inflation is expected to be elevated (i.e. beyond the "normal" ~2% level)  
 
@@ -183,7 +185,8 @@ chart_plotly <- df %>%
          xaxis = list(title = 'Month', type = 'date',
                       tickformat = "%Y-%m", tickangle=-90,
                       range = list("2019-03-01", "2022-05-01"),
-                      showgrid = T, dtick="M1"))
+                      showgrid = T, dtick="M1")) %>%
+  config(displayModeBar = FALSE)
 chart_plotly
 ```
 
