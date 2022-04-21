@@ -91,7 +91,7 @@ CPIAUCSL_chart <- CPIAUCSL_YY12M_NSA %>%
                date_labels = "%m-%y") +
   labs(title = "Reported Inflation",
        y     = "Inflation (%)", x = "Month") +
-  theme(axis.text.x=element_text(angle=45, hjust=1, size = 6))
+  theme(axis.text.x=element_text(angle=45, hjust=1, size = 4))
 ```
   
 *Interactive chart via {plotly}*  
