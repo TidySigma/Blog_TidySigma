@@ -8,7 +8,8 @@ author:
 date: 2022-04-20
 output:
   distill::distill_article:
-    self_contained: false
+    self_contained: true
+    code_folding: true
 ---
 
 **This is inspired by a Jonathan Regenstein twitter post from Dec 6th, 2021.**   
@@ -17,7 +18,7 @@ I want to update the analysis with latest data + make some modifications to his 
 - Jonathan's twitter post: https://twitter.com/jkregenstein/status/1467962068863275011?s=20  
 - Jonathan's original github code: https://gist.github.com/jkr216/0c6463e99dc54f323ed4976392ce3c57  
 
-*Load libraries and my custom function*
+*Section 0:Load libraries and my custom function*
 ```{r}
 library(tidyverse)
 suppressPackageStartupMessages(library(tidyquant))
@@ -52,7 +53,7 @@ CPIAUCSL_YY12M_SA <- tq_get("CPIAUCSL", get= "economic.data", from = "2018-01-01
   mutate(CPI_YY_12M_SA = YY(CPI_allitems_monthly)*100) %>%
   rename(`Reported Inflation` = CPI_YY_12M_SA) %>%
   na.omit()
-tail(CPIAUCSL_YY12M_SA)
+tail(CPIAUCSL_YY12M_SA, 3)
 
 ```
 
@@ -71,7 +72,7 @@ CPIAUCSL_YY12M_NSA <- tq_get("CPIAUCNS", get= "economic.data", from = "2018-01-0
   mutate(CPI_YY_12M_NSA = YY(CPI_allitems_monthly)*100) %>%
   rename(`Reported Inflation` = CPI_YY_12M_NSA) %>%
   na.omit()
-tail(CPIAUCSL_YY12M_NSA)
+tail(CPIAUCSL_YY12M_NSA, 3)
 ```
 
 The latest data point (8.5% for March 2022) in my data frame, matches the BLS press release. Now, on to the rest of the exploration.
@@ -201,6 +202,4 @@ For any questions, comments, bug notifications, etc; please contact me via Twitt
 
 
 
-```{r}
-# end of post
-```
+**End**
