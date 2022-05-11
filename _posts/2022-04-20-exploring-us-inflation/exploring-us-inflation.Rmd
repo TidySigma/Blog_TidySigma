@@ -1,5 +1,5 @@
 ---
-title: "Exploring US Inflation"
+title: "Exploring US Inflation With R"
 description: |
   US Inflation, as measured by Bureau of Labor Statistics (BLS)
 author:
