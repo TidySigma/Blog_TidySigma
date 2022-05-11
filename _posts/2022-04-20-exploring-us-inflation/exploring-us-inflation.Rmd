@@ -185,7 +185,7 @@ chart_plotly <- df %>%
          yaxis = list(title = 'Inflation Percent (%)', ticksuffix = "%"),
          xaxis = list(title = 'Month', type = 'date',
                       tickformat = "%m-%y", tickangle=-90, tickfont = list(size = 4),
-                      range = list("2019-03-01", "2022-05-01"),
+                      range = list("2019-03-01", "2022-06-01"),
                       showgrid = T, dtick="M1")) %>%
   config(displayModeBar = FALSE)
 chart_plotly
